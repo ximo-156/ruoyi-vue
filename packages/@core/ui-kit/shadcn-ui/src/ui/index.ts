@@ -11,6 +11,7 @@ export * from './dropdown-menu';
 export * from './form';
 export * from './hover-card';
 export * from './input';
+export * from './input-image';
 export * from './label';
 export * from './number-field';
 export * from './pagination';

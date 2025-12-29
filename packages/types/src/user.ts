@@ -15,6 +15,22 @@ interface UserInfo extends BasicUserInfo {
    * accessToken
    */
   token: string;
+  /**  其他信息
+   */
+  user: UserProfile;
 }
-
-export type { UserInfo };
+interface UserProfile {
+  /**
+   * 用户姓名
+   */
+  name: string;
+  /**
+   * 用户头像
+   */
+  avatar: string;
+  /**
+   * 用户简介
+   */
+  desc: string;
+}
+export type { UserInfo, UserProfile };

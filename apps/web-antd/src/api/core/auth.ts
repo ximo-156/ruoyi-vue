@@ -5,13 +5,19 @@ export namespace AuthApi {
   export interface LoginParams {
     password?: string;
     username?: string;
+    uuid?: number;
+    code?: string;
   }
 
   /** 登录接口返回值 */
   export interface LoginResult {
-    accessToken: string;
+    token: string;
   }
 
+  export interface CodeResult {
+    img: string;
+    uuid: string;
+  }
   export interface RefreshTokenResult {
     data: string;
     status: number;
@@ -22,7 +28,18 @@ export namespace AuthApi {
  * 登录
  */
 export async function loginApi(data: AuthApi.LoginParams) {
-  return requestClient.post<AuthApi.LoginResult>('/auth/login', data);
+  return requestClient.post<AuthApi.LoginResult>('/login', data, {
+    responseReturn: 'body',
+  });
+}
+/**
+ * 获取图形验证码
+ */
+export async function codeApi() {
+  return requestClient.get<AuthApi.CodeResult>('/captchaImage', {
+    withCredentials: true,
+    responseReturn: 'body',
+  });
 }
 
 /**
@@ -38,8 +55,9 @@ export async function refreshTokenApi() {
  * 退出登录
  */
 export async function logoutApi() {
-  return baseRequestClient.post('/auth/logout', {
+  return baseRequestClient.post('/logout', {
     withCredentials: true,
+    responseReturn: 'raw',
   });
 }
 

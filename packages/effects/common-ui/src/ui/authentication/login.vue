@@ -23,6 +23,25 @@ interface Props extends AuthenticationProps {
 defineOptions({
   name: 'AuthenticationLogin',
 });
+/**
+ * 登录表单组件属性定义
+ *
+ * @property {string} codeLoginPath - 验证码登录路径，默认为'/auth/code-login'
+ * @property {string} forgetPasswordPath - 忘记密码路径，默认为'/auth/forget-password'
+ * @property {Array} formSchema - 表单字段配置数组，默认为空数组
+ * @property {boolean} loading - 是否显示加载状态，默认为false
+ * @property {string} qrCodeLoginPath - 二维码登录路径，默认为'/auth/qrcode-login'
+ * @property {string} registerPath - 注册路径，默认为'/auth/register'
+ * @property {boolean} showCodeLogin - 是否显示验证码登录选项，默认为true
+ * @property {boolean} showForgetPassword - 是否显示忘记密码选项，默认为true
+ * @property {boolean} showQrcodeLogin - 是否显示二维码登录选项，默认为true
+ * @property {boolean} showRegister - 是否显示注册选项，默认为true
+ * @property {boolean} showRememberMe - 是否显示记住我选项，默认为true
+ * @property {boolean} showThirdPartyLogin - 是否显示第三方登录选项，默认为true
+ * @property {string} submitButtonText - 提交按钮文本，默认为空
+ * @property {string} subTitle - 副标题文本，默认为空
+ * @property {string} title - 标题文本，默认为空
+ */
 
 const props = withDefaults(defineProps<Props>(), {
   codeLoginPath: '/auth/code-login',
@@ -36,7 +55,7 @@ const props = withDefaults(defineProps<Props>(), {
   showQrcodeLogin: true,
   showRegister: true,
   showRememberMe: true,
-  showThirdPartyLogin: true,
+  showThirdPartyLogin: false,
   submitButtonText: '',
   subTitle: '',
   title: '',

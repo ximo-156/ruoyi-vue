@@ -1,4 +1,4 @@
-import type { Recordable, UserInfo } from '@vben/types';
+import type { Recordable, UserInfo, UserProfile } from '@vben/types';
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -33,7 +33,8 @@ export const useAuthStore = defineStore('auth', () => {
     let userInfo: null | UserInfo = null;
     try {
       loginLoading.value = true;
-      const { accessToken } = await loginApi(params);
+      const { token } = await loginApi(params);
+      const accessToken = token;
 
       // 如果成功获取到 accessToken
       if (accessToken) {
@@ -98,8 +99,11 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function fetchUserInfo() {
-    let userInfo: null | UserInfo = null;
-    userInfo = await getUserInfoApi();
+    let userInfo: null | UserProfile = null;
+    // debugger
+    const res = await getUserInfoApi();
+
+    userInfo = res.user;
     userStore.setUserInfo(userInfo);
     return userInfo;
   }

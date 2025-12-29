@@ -30,9 +30,7 @@ function setupCommonGuard(router: Router) {
 
   router.afterEach((to) => {
     // 记录页面是否加载,如果已经加载，后续的页面切换动画等效果不在重复执行
-
     loadedPaths.add(to.path);
-
     // 关闭页面加载进度条
     if (preferences.transition.progress) {
       stopProgress();
@@ -93,7 +91,7 @@ function setupAccessGuard(router: Router) {
     // 生成路由表
     // 当前登录用户拥有的角色标识列表
     const userInfo = userStore.userInfo || (await authStore.fetchUserInfo());
-    const userRoles = userInfo.roles ?? [];
+    const userRoles = userInfo?.roles ?? [];
 
     // 生成菜单和路由
     const { accessibleMenus, accessibleRoutes } = await generateAccess({
